@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank.View"
         mc:Ignorable="d"
-               Title="Вклады" Height="650" Width="800"  Background="#C4E9AD">
+               Title="Вклады" Height="650" Width="800"  Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style  x:Name="depositListView" x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -42,6 +42,9 @@
         <Rectangle  Fill="#F4FCFF" HorizontalAlignment="Center" Height="43" Margin="0,20,0,0"  VerticalAlignment="Top" Width="724"  RadiusX="15"  RadiusY="15"/>
         <Rectangle Fill="#FFFFFF" Margin="56,161,473,47" RadiusX="15" RadiusY="15" Stroke="Black" StrokeThickness="0.5"/>
 
+        <Grid x:Name="buttonsGrid">
+            <Button Content="Добавить" HorizontalAlignment="Left" Margin="624,107,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="AddButton" Click="AddButton_Click" />
+        </Grid>
 
         <Label Content="Выберите вклад" HorizontalAlignment="Left" FontSize="28" Margin="56,96,0,0" VerticalAlignment="Top"/>
         <Image Margin="41,28,599,550"  Source="D:\3_курс\практика\картинки\сбер2.jpg" Width="160"  MouseLeftButtonDown="sberImage_MouseLeftButtonDown"/>
@@ -82,14 +85,11 @@
                 </ListView.ItemContainerStyle>
             </ListView>
         </Grid>
-
-        <Button Content="Добавить" HorizontalAlignment="Left" Margin="435,107,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="AddButton" Click="AddButton_Click" />
+        
         <Button Content="Главная" HorizontalAlignment="Left" Margin="515,31,0,0" VerticalAlignment="Top" FontWeight= "Medium" Style="{StaticResource Button2Style}" Click="Button_Click"/>
         <Button Content="Категории вкладов" x:Name="DepositCategoresButton" HorizontalAlignment="Left" Margin="599,31,0,0" VerticalAlignment="Top" FontWeight= "Medium" Style="{StaticResource Button2Style}" Click="DepositCategoresButton_Click"/>
-        <Button Content="Изменить" HorizontalAlignment="Left" Margin="532,107,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="EditButton" Click="EditButton_Click" />
-        <Button Content="Добавить в архив" HorizontalAlignment="Left" Margin="634,107,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="ArchiveButton" Click="ArchiveButton_Click" Background="#D35858" />
-        <Label Content="Архивные вклады" FontSize="20" HorizontalAlignment="Left" Margin="515,175,0,0" VerticalAlignment="Top"/>
-        <Label Content="Действующие вклады" FontSize="20" HorizontalAlignment="Left" Margin="86,175,0,0" VerticalAlignment="Top"/>
+        <Label Content="Архивные вклады" FontSize="20" HorizontalAlignment="Left" Margin="506,175,0,0" VerticalAlignment="Top"/>
+        <Label Content="Действующие вклады" FontSize="20" HorizontalAlignment="Left" Margin="80,175,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

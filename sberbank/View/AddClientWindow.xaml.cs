@@ -28,9 +28,12 @@ namespace sberbank.View
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ClientsWindow mClW = new ClientsWindow();
-            mClW.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
         }
         private void DepositCategoresButton_Click(object sender, RoutedEventArgs e)
         {
@@ -40,9 +43,12 @@ namespace sberbank.View
         }
         public void sberImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ClientsWindow clientsWindow = new ClientsWindow();
-            clientsWindow.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank.View"
         mc:Ignorable="d"
-               Title="Главная" Height="650" Width="800"  Background="#C4E9AD">
+               Title="Главная" Height="650" Width="800"  Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -44,8 +44,10 @@
 
         <Label Content="Главная" HorizontalAlignment="Left" FontSize="28" Margin="56,96,0,0" VerticalAlignment="Top"/>
         <Image Margin="41,28,599,550"  Source="D:\3_курс\практика\картинки\сбер2.jpg" Width="160" MouseLeftButtonDown="sberImage_MouseLeftButtonDown"/>
+        <Grid x:Name="openButtonGrid">
         <Button Content="Открыть новый счет" HorizontalAlignment="Left" Margin="251,199,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="NewDepositButton" Click="NewDepositButton_Click"/>
-        <ListView x:Name="depositListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="81,247,407,175">
+        </Grid>
+            <ListView x:Name="depositListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="81,247,407,175">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -69,5 +71,27 @@
         <Button Content="Категории вкладов" x:Name="DepositCategoresButton" HorizontalAlignment="Left" Margin="599,31,0,0" VerticalAlignment="Top" FontWeight= "Medium" Style="{StaticResource Button2Style}" Click="DepositCategoresButton_Click"/>
         <Label Content="Вклады" HorizontalAlignment="Left" FontSize="24" Margin="81,191,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.375,0.449"/>
         <Image Margin="536,85,62,480"  Source="D:\3_курс\практика\картинки\профиль2.jpg" MouseLeftButtonDown="myProfileImage_MouseLeftButtonDown"/>
+        <Grid x:Name="archiveGrid">
+        <Rectangle Fill="#FFFFFF" Margin="473,161,38,158" RadiusX="15" RadiusY="15" Stroke="Black" StrokeThickness="0.5"/>
+        <Label Content="Закрытые вклады" HorizontalAlignment="Left" FontSize="24" Margin="487,191,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.375,0.449"/>
+        <ListView x:Name="depositListViewArchive" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="488,247,62,175">
+            <ListView.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="FontSize" Value="18" />
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Вклад" DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="Баланс" DisplayMemberBinding="{Binding balance}" />
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="Control.MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        </Grid>
     </Grid>
 </Window>

@@ -1,6 +1,9 @@
-﻿using sberbank.Models;
+﻿using Microsoft.VisualBasic.Devices;
+using Microsoft.VisualBasic.Logging;
+using sberbank.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace sberbank.View
 {
@@ -22,13 +26,22 @@ namespace sberbank.View
     {
         Deposit d = new Deposit();
         SberContext db = new SberContext();
-        Client currentClient;
-      
+
         public DepositAddDetailsWindow(Deposit currentDeposit)
         {
             InitializeComponent();
+
             d = currentDeposit;
 
+            if (App.UserRole == 1)
+            {
+                editButtonGrid.Visibility = Visibility.Collapsed;
+            }
+
+            if (d.IsActivity == 0 || App.UserRole == 2)
+            {
+                openAccountGrid.Visibility = Visibility.Collapsed;
+            }
 
             nameLabel.Content = $"Вклад \"{d.Name}\" в {d.Currency}";
             minimumLabel.Content = "Минимальная сумма вклада: " + d.MinimumDeposit.ToString("F2") + " " + d.Currency;
@@ -40,10 +53,10 @@ namespace sberbank.View
                     depositPeriodLabel.Content = $"Период начисления процентов: раз в месяц";
                     break;
                 case 4:
-                    depositPeriodLabel.Content = "Период начисления процентов: " + d.InterestPeriod + " раза в месяц";
+                    depositPeriodLabel.Content = "Период начисления процентов: каждый квартал (раз в 4 месяца)";
                     break;
-                default:
-                    depositPeriodLabel.Content = "Период начисления процентов: " + d.InterestPeriod + " раз в месяц";
+                case 12:
+                    depositPeriodLabel.Content = "Период начисления процентов: раз в год";
                     break;
             }
 
@@ -61,9 +74,18 @@ namespace sberbank.View
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ClientsWindow mClW = new ClientsWindow();
-            mClW.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
+            if (App.UserRole == 1)
+            {
+                MainClientWindow wMain = new MainClientWindow(App.currentClient);
+                wMain.Show();
+                Close();
+            }
         }
         private void DepositCategoresButton_Click(object sender, RoutedEventArgs e)
         {
@@ -74,9 +96,18 @@ namespace sberbank.View
 
         public void sberImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ClientsWindow clientsWindow = new ClientsWindow();
-            clientsWindow.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
+            if (App.UserRole == 1)
+            {
+                MainClientWindow wMain = new MainClientWindow(App.currentClient);
+                wMain.Show();
+                Close();
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -110,7 +141,24 @@ namespace sberbank.View
             {
                 if (sum > d.MinimumDeposit || sum == d.MinimumDeposit)
                 {
-                    
+                    Account account = new Account
+                    {
+                        IdClient = App.currentClient.IdClient,
+                        IdDeposit = d.IdDeposit,
+                        DepositAmount = sum,
+                        OpeningDate = DateOnly.FromDateTime(DateTime.Now),
+                        ClosingDate = DateOnly.FromDateTime(DateTime.Now.AddMonths(d.DepositTerm)),
+                        Balance = sum,
+                        Status = 1,
+                    };
+                    db.Accounts.Add(account);
+                    db.SaveChanges();
+
+                    MessageBox.Show("Вклад открыт успешно!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    MainClientWindow wMyProfile = new MainClientWindow(App.currentClient);
+                    wMyProfile.Show();
+                    Close();
                 }
             }
             else
@@ -118,6 +166,13 @@ namespace sberbank.View
                 MessageBox.Show("Неверный формат суммы. Введите числовое значение.");
             }
 
+        }
+
+        private void editDepositButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditDepositWindow wEdit = new EditDepositWindow(d);
+            wEdit.Show();
+            Close();
         }
     }
 }

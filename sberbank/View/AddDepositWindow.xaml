@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank.View"
         mc:Ignorable="d"
-               Title="Добавление вклада" Height="650" Width="800"  Background="#C4E9AD">
+               Title="Добавление вклада" Height="650" Width="800"  Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -61,6 +61,6 @@
         <TextBox HorizontalAlignment="Left" x:Name="depositTermTextBox" Margin="229,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="482" PreviewTextInput="OnPreviewTextInput" ToolTip="Введите число месяцев"/>
         <TextBox HorizontalAlignment="Left" x:Name="interestRateTextBox" Margin="280,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="431"  PreviewTextInput="OnPreviewTextInput" ToolTip="Введите число"/>
         <TextBox HorizontalAlignment="Left" x:Name="interestPeriodTextBox" Margin="280,356,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="431"  PreviewTextInput="OnPreviewTextInput" ToolTip="Введите число месяцев"/>
-        <CheckBox x:Name="checkBox" Content="Есть" HorizontalAlignment="Left" Margin="284,394,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Есть" HorizontalAlignment="Left" Margin="284,394,0,0" VerticalAlignment="Top" x:Name="possibilityOfRemovalCheckBox"/>
     </Grid>
 </Window>

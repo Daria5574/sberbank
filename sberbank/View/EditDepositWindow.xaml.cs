@@ -1,4 +1,5 @@
-﻿using System;
+﻿using sberbank.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,37 @@ namespace sberbank.View
     /// </summary>
     public partial class EditDepositWindow : Window
     {
-        public EditDepositWindow()
+        SberContext db = new SberContext();
+        Deposit d;
+        public EditDepositWindow(Deposit deposit)
         {
             InitializeComponent();
+            d = deposit;
+            nameTextBox.Text = d.Name;
+            currencyTextBox.Text = d.Currency;
+            minimumDepositTextBox.Text = d.MinimumDeposit.ToString("F2");
+            depositTermTextBox.Text = d.DepositTerm.ToString();
+            interestRateTextBox.Text = d.InterestRate.ToString("F1");
+            interestPeriodTextBox.Text = d.InterestPeriod.ToString();
+
+            if (d.PossibilityOfRemoval == 1)
+            {
+                possibilityOfRemovalCheckBox.IsChecked = true;
+            }
+            else
+            {
+                possibilityOfRemovalCheckBox.IsChecked = false;
+            }
+
+            if (d.IsActivity == 1)
+            {
+                isActiveCheckBox.IsChecked = true;
+            }
+            else
+            {
+                isActiveCheckBox.IsChecked = false;
+            }
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -60,6 +89,7 @@ namespace sberbank.View
             }
         }
 
+
         private void currencyTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (currencyTextBox.Text.Length >= 3)
@@ -81,6 +111,34 @@ namespace sberbank.View
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
+            d.Name = nameTextBox.Text.Trim();
+            d.Currency = currencyTextBox.Text.Trim();
+            d.MinimumDeposit = decimal.Parse(minimumDepositTextBox.Text.Trim());
+            d.DepositTerm = int.Parse(depositTermTextBox.Text.Trim());
+            d.InterestRate = decimal.Parse(interestRateTextBox.Text.Trim());
+            d.InterestPeriod = int.Parse(interestPeriodTextBox.Text.Trim());
+
+            if (possibilityOfRemovalCheckBox.IsChecked == true)
+            {
+                d.PossibilityOfRemoval = 1;
+            }
+            else
+            {
+                d.PossibilityOfRemoval = 0;
+            }
+
+            if (isActiveCheckBox.IsChecked == true)
+            {
+                d.IsActivity = 1;
+            }
+            else
+            {
+                d.IsActivity = 0;
+            }
+
+            db.Deposits.Update(d);
+            db.SaveChanges();
+
             MessageBox.Show("Вклад успешно изменен!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
 
             DepositWindow depositWindow = new DepositWindow();

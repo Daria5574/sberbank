@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank"
         mc:Ignorable="d"
-               Title="MainWindow" Height="450" Width="800" Background="#C4E9AD">
+        Title="Авторизация" Height="450" Width="800" Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -38,8 +38,8 @@
         <Rectangle Fill="#DAF0CC" Margin="521,335,23,18" RadiusX="15" RadiusY="15" />
         <Label Content="Автор - Потапенко Дарья Сергеевна," HorizontalAlignment="Left" Margin="533,342,0,0" VerticalAlignment="Top"/>
         <Label Content="студентка группы ИПсп-121" HorizontalAlignment="Left" Margin="533,358,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="50,110,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="181"/>
-        <TextBox HorizontalAlignment="Left" Margin="50,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181"/>
+        <TextBox HorizontalAlignment="Left" Margin="50,110,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="181" x:Name="textBoxLogin"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="50,151,0,0" VerticalAlignment="Top" Width="181" x:Name="passBox"/>
         <Label Content="Логин" FontSize="10" HorizontalAlignment="Left" Margin="53,87,0,0" VerticalAlignment="Top"/>
         <Label Content="Пароль" FontSize="10" HorizontalAlignment="Left" Margin="50,128,0,0" VerticalAlignment="Top" Height="23"/>
         <Button Content="Продолжить" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Center" Style="{StaticResource ButtonStyle}" x:Name="buttonСontinue" Click="buttonСontinue_Click"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank.View"
         mc:Ignorable="d"
-              Title="Информация об операции" Height="650" Width="800"  Background="#C4E9AD">
+              Title="Информация об операции" Height="650" Width="800"  Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -54,5 +54,6 @@
         <Label Content="Описание:" HorizontalAlignment="Left" Margin="46,487,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="46,526,0,0" VerticalAlignment="Top" FontSize="16" x:Name="descriptionLabel"/>
         <Button Content="Вернуться" HorizontalAlignment="Left" Margin="46,92,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="BackButton" Click="BackButton_Click" />
+        <Button Content="Импортировать детали в exel" HorizontalAlignment="Left" Margin="552,539,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="importButton" Click="importButton_Click" />
     </Grid>
 </Window>

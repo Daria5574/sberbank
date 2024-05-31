@@ -112,63 +112,7 @@ namespace sberbank.View
             Close();
         }
 
-        private void editClient_Click(object sender, RoutedEventArgs e)
-        {
-            if (lvClients.SelectedItem != null)
-            {
-                currentClient = lvClients.SelectedItem as Client;
-                if (currentClient != null)
-                {
-
-                    EditClientWindow wMainClient = new EditClientWindow(currentClient);
-                    wMainClient.Show();
-                    Close();
-                }
-                else
-                {
-                    System.Windows.MessageBox.Show("Клиент не найден");
-                }
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("Выберите клиента в ListView");
-            }
-        }
-        //if (lvClients.SelectedItem != null)
-        //{
-        //    string selectedItem = lvClients.SelectedItem.ToString();
-        //    Client currentClient = null;
-        //    currentClient = db.Clients.FirstOrDefault(b => b.Passport == pass)
-
-
-        //    //if (lvMyBook.SelectedItem != null)
-        //    //{
-        //    //    string selectedItem = lvMyBook.SelectedItem.ToString();
-        //    //    int equalIndex = selectedItem.IndexOf('=');
-        //    //    int commaIndex = selectedItem.IndexOf(',');
-
-        //    //    if (equalIndex != -1 && commaIndex != -1 && equalIndex < commaIndex)
-        //    //    {
-        //    //        string bookName = selectedItem.Substring(equalIndex + 1, commaIndex - equalIndex - 1).Trim();
-
-        //    //        Book selectedBook = db.book
-        //    //                .Where(b => b.Name == bookName)
-        //    //                .FirstOrDefault();
-        //    //        WindowEditBook wEditBook = new WindowEditBook(selectedBook);
-        //    //        wEditBook.Show();
-        //    //        Close();
-        //    //    }
-        //    //}
-        //    //else
-        //    //{
-        //    //    MessageBox.Show("Выберите книгу для редактирования");
-        //    //}
-
-        //    EditClientWindow editClWin = new EditClientWindow();
-        //    editClWin.Show();
-        //    Close();
-        //}
-        //}
+        
         public void sberImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ClientsWindow clientsWindow = new ClientsWindow();
@@ -178,8 +122,9 @@ namespace sberbank.View
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            filteredClients = new List<Client>(allClients); // Сбрасываем фильтр
+            filteredClients = new List<Client>(allClients); 
             UpdateClients();
         }
+
     }
 }

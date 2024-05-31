@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank.View"
         mc:Ignorable="d"
-                        Title="Изменение клиента" Height="650" Width="800"  Background="#C4E9AD">
+                        Title="Изменение клиента" Height="650" Width="800"  Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -77,7 +77,7 @@
         <TextBox HorizontalAlignment="Left" x:Name="dobTextBox" Margin="229,428,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="482"/>
         <TextBox HorizontalAlignment="Left" x:Name="loginTextBox" Margin="229,457,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="482"/>
         <TextBox HorizontalAlignment="Left" x:Name="passwordTextBox" Margin="229,486,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="482"/>
-        <TextBox HorizontalAlignment="Left" x:Name="statusTextBox" Margin="229,515,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" />
+        <CheckBox x:Name="statusCheckBox" Content="Активен" HorizontalAlignment="Left" Margin="229,518,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

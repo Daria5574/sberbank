@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank.View"
         mc:Ignorable="d"
-                   Title="ClientsWindow" Height="650" Width="800"  Background="#C4E9AD">
+        Title="Управление балансом" Height="650" Width="800"  Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -40,22 +40,25 @@
         <Rectangle  Fill="#F4FCFF" HorizontalAlignment="Center" Height="19" Margin="0,44,0,0"  VerticalAlignment="Top" Width="723" />
         <Rectangle  Fill="#F4FCFF" HorizontalAlignment="Center" Height="43" Margin="0,20,0,0"  VerticalAlignment="Top" Width="724"  RadiusX="15"  RadiusY="15"/>
 
-        <Label Content="Пополнение" HorizontalAlignment="Left" FontSize="28" Margin="56,96,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пополнение" HorizontalAlignment="Left" FontSize="28" Margin="91,96,0,0" VerticalAlignment="Top"/>
         <Image Margin="41,28,599,550"  Source="D:\3_курс\практика\картинки\сбер2.jpg" Width="160"  MouseLeftButtonDown="sberImage_MouseLeftButtonDown"/>
 
-        <Button Content="Пополнить" HorizontalAlignment="Left" Margin="62,264,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="PlusButton" Click="PlusButton_Click"/>
-        <Button Content="Снять средства" HorizontalAlignment="Left" Margin="464,264,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="MinusButton" Click="MinusButton_Click"/>
+        <Button Content="Пополнить" HorizontalAlignment="Left" Margin="110,260,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="PlusButton" Click="PlusButton_Click"/>
+
 
         <Button Content="Главная" HorizontalAlignment="Left" Margin="515,31,0,0" VerticalAlignment="Top" FontWeight= "Medium" Style="{StaticResource Button2Style}" Click="Button_Click"/>
         <Button Content="Категории вкладов" x:Name="DepositCategoresButton" HorizontalAlignment="Left" Margin="599,31,0,0" VerticalAlignment="Top" FontWeight= "Medium" Style="{StaticResource Button2Style}" Click="DepositCategoresButton_Click"/>
-        <Label Content="100,25 RUB" HorizontalAlignment="Left" FontSize="28" Margin="56,158,0,0" VerticalAlignment="Top" x:Name="balanceLabel"/>
-        <Label Content="Управляй" HorizontalAlignment="Left" FontSize="16" Margin="67,136,0,0" VerticalAlignment="Top" x:Name="nameLabel"/>
-        <Label Content="Снятие средств" HorizontalAlignment="Left" FontSize="28" Margin="443,96,0,0" VerticalAlignment="Top" />
-        <Label Content="Управляй" HorizontalAlignment="Left" FontSize="16" Margin="455,136,0,0" VerticalAlignment="Top" x:Name="nameLabel1"/>
-        <Label Content="100,25 RUB" HorizontalAlignment="Left" FontSize="28" Margin="445,158,0,0" VerticalAlignment="Top" x:Name="balanceLabel1"/>
+        <Label Content="100,25 RUB" HorizontalAlignment="Left" FontSize="28" Margin="91,159,0,0" VerticalAlignment="Top" x:Name="balanceLabel"/>
+        <Label Content="Управляй" HorizontalAlignment="Left" FontSize="16" Margin="108,137,0,0" VerticalAlignment="Top" x:Name="nameLabel"/>
+        <Grid x:Name="minusBalanseGrid">
+            <Label Content="Снятие средств" HorizontalAlignment="Left" FontSize="28" Margin="443,96,0,0" VerticalAlignment="Top" />
+            <Label Content="Управляй" HorizontalAlignment="Left" FontSize="16" Margin="455,136,0,0" VerticalAlignment="Top" x:Name="nameLabel1"/>
+            <Label Content="100,25 RUB" HorizontalAlignment="Left" FontSize="28" Margin="445,158,0,0" VerticalAlignment="Top" x:Name="balanceLabel1"/>
+            <Button Content="Снять средства" HorizontalAlignment="Left" Margin="464,262,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="MinusButton" Click="MinusButton_Click"/>
+            <TextBox HorizontalAlignment="Left" Margin="443,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="34"  FontSize="20" PreviewTextInput="OnPreviewTextInput" x:Name="minusTextBox" />
+        </Grid>
+        <TextBox HorizontalAlignment="Left" Margin="91,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="34"  FontSize="20" PreviewTextInput="OnPreviewTextInput" x:Name="plusTextBox"/>
 
-        <TextBox HorizontalAlignment="Left" Margin="56,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="34"  FontSize="20" PreviewTextInput="OnPreviewTextInput" x:Name="plusTextBox"/>
-        <TextBox HorizontalAlignment="Left" Margin="445,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="34"  FontSize="20" PreviewTextInput="OnPreviewTextInput" x:Name="minusTextBox" />
 
     </Grid>
 </Window>

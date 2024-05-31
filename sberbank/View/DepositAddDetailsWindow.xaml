@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank.View"
         mc:Ignorable="d"
-        Title="Детали вклада" Height="650" Width="800"  Background="#C4E9AD">
+        Title="Детали вклада" Height="650" Width="800"  Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -52,13 +52,18 @@
         <Label Content="Процентная ставка: 5,5 % годовых" HorizontalAlignment="Left" FontSize="18" Margin="60,326,0,0" VerticalAlignment="Top" x:Name="procentLabel"/>
 
         <Label Content="Вклад Управляй в RUB" HorizontalAlignment="Left" FontSize="28" Margin="56,83,0,0" VerticalAlignment="Top" x:Name="nameLabel"/>
-        <Button Content="Открыть счет" HorizontalAlignment="Left" Margin="617,503,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="openButton" Click="openButton_Click"/>
-        <Button Content="Вернуться" HorizontalAlignment="Left" Margin="515,503,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="BackButton" Click="BackButton_Click"/>
+       
+        <Button Content="Вернуться" HorizontalAlignment="Left" Margin="60,506,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="BackButton" Click="BackButton_Click"/>
         <Label Content="Срок вклада: 12 месяцев" HorizontalAlignment="Left" FontSize="18" Margin="60,224,0,0" VerticalAlignment="Top" x:Name="depositTermLabel"/>
         <Label Content="Период начисления процентов: раз в месяц" HorizontalAlignment="Left" FontSize="18" Margin="60,258,0,0" VerticalAlignment="Top" x:Name="depositPeriodLabel"/>
         <Label Content="Возможность частичного снятия: да" HorizontalAlignment="Left" FontSize="18" Margin="60,292,0,0" VerticalAlignment="Top" x:Name="withdrawalLabel"/>
-        <Label Content="Введите сумму вклада:" HorizontalAlignment="Left" FontSize="18" Margin="60,398,0,0" VerticalAlignment="Top"/>
+        <Grid x:Name="openAccountGrid">
+            <Button Content="Открыть счет" HorizontalAlignment="Left" Margin="615,503,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="openButton" Click="openButton_Click"/>
+            <Label Content="Введите сумму вклада:" HorizontalAlignment="Left" FontSize="18" Margin="60,398,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="64,437,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Height="34"  FontSize="20" PreviewTextInput="OnPreviewTextInput" x:Name="sumTextBox"/>
-
+        </Grid>
+        <Grid x:Name="editButtonGrid">
+        <Button Content="Изменить" HorizontalAlignment="Left" Margin="625,99,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="editDepositButton" Click="editDepositButton_Click"/>
+        </Grid>
     </Grid>
 </Window>

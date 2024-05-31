@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank.View"
         mc:Ignorable="d"
-        Title="Ваш вклад" Height="650" Width="800"  Background="#C4E9AD">
+        Title="Ваш вклад" Height="650" Width="800"  Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -68,8 +68,12 @@
         <Button Content="Категории вкладов" x:Name="DepositCategoresButton" HorizontalAlignment="Left" Margin="599,31,0,0" VerticalAlignment="Top" FontWeight= "Medium" Style="{StaticResource Button2Style}" Click="DepositCategoresButton_Click"/>
         <Label Content="Операции" HorizontalAlignment="Left" FontSize="24" Margin="86,215,0,0" VerticalAlignment="Top"/>
         <Label Content="Управляй" HorizontalAlignment="Left" FontSize="23" Margin="56,83,0,0" VerticalAlignment="Top" x:Name="nameLabel"/>
-        <Button Content="Пополнить/Снять средства" HorizontalAlignment="Left" Margin="447,95,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="MoneyButton" Click="MoneyButton_Click"/>
-        <Button Content="Закрыть счет" HorizontalAlignment="Left" Margin="636,95,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}"  Background="#D35858" x:Name="CloseButton" Click="CloseButton_Click"/>
-        <Button Content="Вернуться на главную" HorizontalAlignment="Left" Margin="587,537,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="BackButton" Click="BackButton_Click"/>
+        <Grid x:Name="manageBox">
+            <Button Content="Управление балансом" HorizontalAlignment="Left" Margin="463,95,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="MoneyButton" Click="MoneyButton_Click"/>
+            <Button Content="Закрыть счет" HorizontalAlignment="Left" Margin="636,95,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}"  Background="#D35858" x:Name="CloseButton" Click="CloseButton_Click"/>
+        </Grid>
+        <Grid x:Name="procentGrid">
+        <Button Content="Начисление процентов" HorizontalAlignment="Left" Margin="578,537,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="procentButton" Click="procentButton_Click"/>
+        </Grid>
     </Grid>
 </Window>

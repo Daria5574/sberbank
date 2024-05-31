@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank.View"
         mc:Ignorable="d"
-               Title="Добавление клиента" Height="650" Width="800"  Background="#C4E9AD">
+               Title="Добавление клиента" Height="650" Width="800"  Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -59,7 +59,7 @@
         <Label Content="Улица: " FontSize="14" HorizontalAlignment="Left" Margin="56,360,0,0" VerticalAlignment="Top"/>
         <Label Content="Дом: " FontSize="14" HorizontalAlignment="Left" Margin="475,359,0,0" VerticalAlignment="Top"/>
         <Label Content="Квартира: " FontSize="14" HorizontalAlignment="Left" Margin="573,360,0,0" VerticalAlignment="Top"/>
-        <Label Content="Паспортные данные:" FontSize="14" HorizontalAlignment="Left" Margin="56,394,0,0" VerticalAlignment="Top"/>
+        <Label Content="Номер паспорта:" FontSize="14" HorizontalAlignment="Left" Margin="56,394,0,0" VerticalAlignment="Top"/>
         <Label Content="Логин:" FontSize="14" HorizontalAlignment="Left" Margin="54,452,0,0" VerticalAlignment="Top"/>
         <Label Content="Пароль:" FontSize="14" HorizontalAlignment="Left" Margin="56,481,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" x:Name="lnameTextBox" Margin="229,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="482"/>

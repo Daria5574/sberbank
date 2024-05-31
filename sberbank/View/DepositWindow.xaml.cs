@@ -21,6 +21,7 @@ namespace sberbank.View
     public partial class DepositWindow : Window
     {
         SberContext db = new SberContext();
+        
         List<Deposit> deposits;
         List<Deposit> archiveDeposits;
         public DepositWindow()
@@ -33,6 +34,10 @@ namespace sberbank.View
             lvDeposit.ItemsSource = deposits;
             lvDepositArchive.ItemsSource = archiveDeposits;
             UpdateDeposit();
+            if (App.UserRole == 1)
+            {
+                buttonsGrid.Visibility = Visibility.Collapsed;
+            }
         }
 
         public void UpdateDeposit()
@@ -67,9 +72,18 @@ namespace sberbank.View
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ClientsWindow mClW = new ClientsWindow();
-            mClW.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
+            if (App.UserRole == 1)
+            {
+                MainClientWindow wMain = new MainClientWindow(App.currentClient);
+                wMain.Show();
+                Close();
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -79,23 +93,23 @@ namespace sberbank.View
             Close();
         }
 
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            EditDepositWindow depositWindow = new EditDepositWindow();
-            depositWindow.Show();
-            Close();
-        }
+
         public void sberImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ClientsWindow clientsWindow = new ClientsWindow();
-            clientsWindow.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
+            if (App.UserRole == 1)
+            {
+                MainClientWindow wMain = new MainClientWindow(App.currentClient);
+                wMain.Show();
+                Close();
+            }
         }
 
-        private void ArchiveButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender is System.Windows.Controls.ListViewItem listViewItem)
@@ -110,13 +124,7 @@ namespace sberbank.View
                     DepositAddDetailsWindow wAddDetails = new DepositAddDetailsWindow(currentDeposit);
                     wAddDetails.Show();
                     Close();
-                    //        string pass = selectedItem.Passport;
 
-                    //        currentClient = db.Clients.FirstOrDefault(b => b.Passport == pass);
-
-                    //        MainClientWindow wMainClient = new MainClientWindow(currentClient);
-                    //        wMainClient.Show();
-                    //        Close();
                 }
             }
         }

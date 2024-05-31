@@ -29,9 +29,12 @@ namespace sberbank.View
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ClientsWindow mClW = new ClientsWindow();
-            mClW.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
         }
         private void DepositCategoresButton_Click(object sender, RoutedEventArgs e)
         {
@@ -72,9 +75,12 @@ namespace sberbank.View
         }
         public void sberImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ClientsWindow clientsWindow = new ClientsWindow();
-            clientsWindow.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -94,14 +100,16 @@ namespace sberbank.View
 
 
             int interestPeriod = int.Parse(interestPeriodTextBox.Text.Trim());
-            int isCheckedValue;
-            if (checkBox.IsChecked == null)
+
+            int possibilityOfRemoval;
+
+            if (possibilityOfRemovalCheckBox.IsChecked == true)
             {
-                isCheckedValue = 0;
+                possibilityOfRemoval = 1;
             }
             else
             {
-                isCheckedValue = checkBox.IsChecked == true ? 1 : 0;
+                possibilityOfRemoval = 0;
             }
 
             Deposit deposit = new Deposit
@@ -112,7 +120,8 @@ namespace sberbank.View
                 DepositTerm = depositTerm,
                 InterestRate = interestRate,
                 InterestPeriod = interestPeriod,
-                PossibilityOfRemoval = isCheckedValue
+                PossibilityOfRemoval = possibilityOfRemoval,
+                IsActivity = 1
             };
 
             db.Deposits.Add(deposit);

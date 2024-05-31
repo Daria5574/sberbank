@@ -25,6 +25,12 @@ namespace sberbank.View
         public MyProfileWindow(Client currentClient)
         {
             InitializeComponent();
+
+            if (App.UserRole == 1)
+            {
+                editButton.Visibility = Visibility.Collapsed;
+            }
+
             c = currentClient;
             fioLabel.Content = "ФИО: " + c.Lname + " " + c.Fname + " " + c.Sname;
             dobLabel.Content = "Дата рождения: " + c.DateOfBirthday;
@@ -41,15 +47,33 @@ namespace sberbank.View
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ClientsWindow mClW = new ClientsWindow();
-            mClW.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
+            if (App.UserRole == 1)
+            {
+                MainClientWindow wMain = new MainClientWindow(App.currentClient);
+                wMain.Show();
+                Close();
+            }
         }
         public void sberImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ClientsWindow clientsWindow = new ClientsWindow();
-            clientsWindow.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
+            if (App.UserRole == 1)
+            {
+                MainClientWindow wMain = new MainClientWindow(App.currentClient);
+                wMain.Show();
+                Close();
+            }
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -68,6 +92,13 @@ namespace sberbank.View
         {
             MainClientWindow wMainClient = new MainClientWindow(c);
             wMainClient.Show();
+            Close();
+        }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditClientWindow wEditClient = new EditClientWindow(c);
+            wEditClient.Show();
             Close();
         }
     }

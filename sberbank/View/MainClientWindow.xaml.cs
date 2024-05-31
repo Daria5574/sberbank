@@ -26,21 +26,47 @@ namespace sberbank.View
         Client client1 = new Client();
         public MainClientWindow(Client currentClient)
         {
+            
             InitializeComponent();
-
+            client1 = currentClient;
+            if (App.UserRole == 1)
+            {
+                archiveGrid.Visibility = Visibility.Collapsed;
+            }
+            if (App.UserRole == 2) 
+            {
+                openButtonGrid.Visibility = Visibility.Collapsed;
+            }
+            
             var listViewData = from client in db.Clients
                                join account in db.Accounts on client.IdClient equals account.IdClient
                                join deposit in db.Deposits on account.IdDeposit equals deposit.IdDeposit
-                               where client.IdClient == currentClient.IdClient
+                               where client.IdClient == currentClient.IdClient && account.Status == 1 && deposit.IsActivity == 1
                                select new
                                {
                                    name = deposit.Name,
                                    balance = account.Balance + " " + deposit.Currency,
+                                   idAccount = account.IdAccount,
+                                   idDeposit = deposit.IdDeposit,
                                };
 
             depositListView.ItemsSource = listViewData.ToList();
 
             client1 = currentClient;
+
+            var listViewData1 = from client in db.Clients
+                                join account in db.Accounts on client.IdClient equals account.IdClient
+                                join deposit in db.Deposits on account.IdDeposit equals deposit.IdDeposit
+                                where client.IdClient == currentClient.IdClient && (deposit.IsActivity == 0 || account.Status == 0)
+                                select new
+                                {
+                                    name = deposit.Name,
+                                    balance = account.Balance + " " + deposit.Currency,
+                                    idAccount = account.IdAccount,
+                                    idDeposit = deposit.IdDeposit,
+                                };
+
+            depositListViewArchive.ItemsSource = listViewData1.ToList();
         }
         public void myProfileImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -52,16 +78,34 @@ namespace sberbank.View
 
         public void sberImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ClientsWindow clientsWindow = new ClientsWindow();
-            clientsWindow.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
+            if (App.UserRole == 1)
+            {
+                MainClientWindow wMain = new MainClientWindow(App.currentClient);
+                wMain.Show();
+                Close();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ClientsWindow mClW = new ClientsWindow();
-            mClW.Show();
-            Close();
+            if (App.UserRole == 2)
+            {
+                ClientsWindow mClW = new ClientsWindow();
+                mClW.Show();
+                Close();
+            }
+            if (App.UserRole == 1)
+            {
+                MainClientWindow wMain = new MainClientWindow(App.currentClient);
+                wMain.Show();
+                Close();
+            }
         }
         private void DepositCategoresButton_Click(object sender, RoutedEventArgs e)
         {
@@ -73,22 +117,19 @@ namespace sberbank.View
         {
             if (sender is ListViewItem listViewItem)
             {
-
+                Account currentAccount = new Account();
                 Deposit currentDeposit = new Deposit();
 
                 var selectedItem = listViewItem.Content as dynamic;
                 string name = selectedItem.name + " " + selectedItem.balance;
 
-                currentDeposit = db.Deposits
-     .Join(db.Accounts,
-         deposit => deposit.IdDeposit,
-         account => account.IdDeposit,
-         (deposit, account) => new { deposit, account })
-     .Where(x => x.deposit.Name + " " + x.account.Balance + " " + x.deposit.Currency == name)
-     .Select(x => x.deposit)
-     .FirstOrDefault();
+                int idAcc = selectedItem.idAccount;
+                int idDep = selectedItem.idDeposit;
 
-                DepositDetailsWindow DepositDetailsW = new DepositDetailsWindow(currentDeposit);
+                currentAccount = db.Accounts.FirstOrDefault(x => x.IdAccount == idAcc);
+                currentDeposit = db.Deposits.FirstOrDefault(d => d.IdDeposit == idDep);
+
+                DepositDetailsWindow DepositDetailsW = new DepositDetailsWindow(currentDeposit, currentAccount);
                 DepositDetailsW.Show();
                 Close();
             }

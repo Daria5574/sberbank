@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sberbank.View"
         mc:Ignorable="d"
-                Title="Мой профиль" Height="650" Width="800"  Background="#C4E9AD">
+                Title="Мой профиль" Height="650" Width="800"  Background="#C4E9AD" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3BC452" />
@@ -53,5 +53,8 @@
         <Label Content="Паспортые данные:" HorizontalAlignment="Left" Margin="69,316,0,0" FontSize="16" VerticalAlignment="Top" x:Name="passportLabel"/>
         <Button Content="Выйти из профиля" FontSize="14" HorizontalAlignment="Left" Margin="589,398,0,0" VerticalAlignment="Top" Background="#D35858" Style="{StaticResource ButtonStyle}" x:Name="ExitButton" Click="ExitButton_Click"/>
         <Button Content="Вернуться на главную" FontSize="14" HorizontalAlignment="Left" Margin="381,398,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="BackButton" Click="BackButton_Click"/>
-    </Grid>
+        <Grid x:Name="editButtonGrid">
+            <Button Content="Редактировать" FontSize="14" HorizontalAlignment="Left" Margin="615,104,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" x:Name="editButton" Click="editButton_Click"/>
+        </Grid>
+        </Grid>
 </Window>
